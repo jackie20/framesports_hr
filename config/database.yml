@@ -1,0 +1,24 @@
+default: &default
+  adapter: sqlserver
+  encoding: utf8
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
+  port: <%= ENV.fetch("DB_PORT", 1433) %>
+  database: <%= ENV.fetch("DB_NAME", "eoms_development") %>
+  username: <%= ENV.fetch("DB_USERNAME", "sa") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "") %>
+  azure: false
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME", "eoms_development") %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME", "eoms_development") %>_test
+
+production:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME", "eoms_production") %>
+  azure: <%= ENV.fetch("AZURE_SQL", "false") == "true" %>
