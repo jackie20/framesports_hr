@@ -15,7 +15,7 @@ gem "bcrypt", "~> 3.1"
 gem "jsonapi-serializer"
 
 # Pagination
-gem "pagy", "~> 6.0"
+gem "pagy", "~> 43.5"
 
 # Search / filtering
 gem "ransack"
